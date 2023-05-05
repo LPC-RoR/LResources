@@ -1,0 +1,18 @@
+<li class="nav-item dropdown ml-auto">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= nombre %>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+    <% unless dd_items(nombre).blank? %>
+      <% dd_items(nombre).each do |item| %>
+        <% if item[0] == 'divider' %>
+          <div class="dropdown-divider"></div>
+        <% else %>
+          <small><%= link_to item[0], item[1], class: "dropdown-item" %></small>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </div>
+</li>

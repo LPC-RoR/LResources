@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= config[:app][:nombre] %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "sb", "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag asset_path('favicon.ico') if File.exist?("app/assets/images/favicon.ico") %>
+  </head>
+
+  <body>
+
+    <%= render partial: '0p/navbar/navbar' %>
+    <div class="container-fluid">
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+
+    <% end %>      <%= render partial: 'layouts/app' %>
+
+    </div>
+
+    <hr>
+
+    <%= render partial: 'home/h_imagenes/partials/imagen', locals: {nombre: 'Foot', size: config[:image][:foot][:size]} if foot? %>
+
+  </body>
+</html>

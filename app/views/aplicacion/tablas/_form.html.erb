@@ -1,0 +1,17 @@
+<%= form_with(model: tabla) do |form| %>
+  <% if tabla.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tabla.errors.count, "error") %> prohibited this tabla from being saved:</h2>
+
+      <ul>
+        <% tabla.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

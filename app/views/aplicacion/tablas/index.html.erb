@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tablas</h1>
+
+<div id="tablas">
+  <% @tablas.each do |tabla| %>
+    <%= render tabla %>
+    <p>
+      <%= link_to "Show this tabla", tabla %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tabla", new_tabla_path %>

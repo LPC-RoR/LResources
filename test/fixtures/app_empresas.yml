@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_empresa: MyString
+  rut: MyString
+
+two:
+  app_empresa: MyString
+  rut: MyString

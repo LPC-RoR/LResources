@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tabla %>
+
+<div>
+  <%= link_to "Edit this tabla", edit_tabla_path(@tabla) %> |
+  <%= link_to "Back to tablas", tablas_path %>
+
+  <%= button_to "Destroy this tabla", @tabla, method: :delete %>
+</div>

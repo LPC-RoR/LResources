@@ -1,0 +1,42 @@
+<%= form_with(model: st_log) do |form| %>
+  <% if st_log.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(st_log.errors.count, "error") %> prohibited this st_log from being saved:</h2>
+
+      <ul>
+        <% st_log.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :app_perfil_id, style: "display: block" %>
+    <%= form.number_field :app_perfil_id %>
+  </div>
+
+  <div>
+    <%= form.label :class_name, style: "display: block" %>
+    <%= form.text_field :class_name %>
+  </div>
+
+  <div>
+    <%= form.label :objeto_id, style: "display: block" %>
+    <%= form.number_field :objeto_id %>
+  </div>
+
+  <div>
+    <%= form.label :e_origen, style: "display: block" %>
+    <%= form.text_field :e_origen %>
+  </div>
+
+  <div>
+    <%= form.label :e_destino, style: "display: block" %>
+    <%= form.text_field :e_destino %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

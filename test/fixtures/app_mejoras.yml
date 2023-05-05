@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_mejora: MyText
+  estado: MyString
+  owner_class: MyString
+  owner_id: 1
+  app_perfil_id: 1
+
+two:
+  app_mejora: MyText
+  estado: MyString
+  owner_class: MyString
+  owner_id: 1
+  app_perfil_id: 1
