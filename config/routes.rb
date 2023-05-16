@@ -27,7 +27,10 @@ Rails.application.routes.draw do
       # intentaremos reemplazar la tabla por relaciones con st_modelos
 #      resources :st_perfil_modelos
     end
-    resources :app_empresas
+    resources :app_empresas do
+      resources :app_administradores
+      resources :app_nominas
+    end
   end
 
   scope module: 'recursos' do

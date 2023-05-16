@@ -80,7 +80,7 @@ class Repositorios::AppDirectoriosController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = @objeto.padre
+      @redireccion = app_repositorios_path
     end
 
     # Only allow a list of trusted parameters through.

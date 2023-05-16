@@ -2,15 +2,15 @@
   <tbody>
 
   	<!-- Directorios-->
-  	<% unless @coleccion['app_directorios'].blank? %>
-	  	<% @coleccion['app_directorios'].each do |dir| %>
+  	<% unless @coleccion["#{tag unless tag.blank?}app_directorios"].blank? %>
+	  	<% @coleccion["#{tag unless tag.blank?}app_directorios"].each do |dir| %>
 		  	<%= render partial: "/repositorios/app_directorios/partials/modelo", locals: {a: 'index', objeto: dir} %>
   		<% end  %>
   	<% end %>
 
     <!-- Directorios-->
-    <% unless @coleccion['app_documentos'].blank? %>
-      <% @coleccion['app_documentos'].each do |doc| %>
+    <% unless @coleccion["#{tag unless tag.blank?}app_documentos"].blank? %>
+      <% @coleccion["#{tag unless tag.blank?}app_documentos"].each do |doc| %>
         <%= render partial: "/repositorios/app_directorios/partials/modelo", locals: {a: 'index', objeto: doc} %>
       <% end  %>
     <% end %>

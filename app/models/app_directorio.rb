@@ -21,7 +21,7 @@ class AppDirectorio < ApplicationRecord
 		AppArchivo.where(owner_class: 'AppDirectorio').where(owner_id: self.id)
 	end
 
-	def padre
+	def owner
 		self.parent.present? ? self.parent : self.owner_class.constantize.find(self.owner_id)
 	end
 

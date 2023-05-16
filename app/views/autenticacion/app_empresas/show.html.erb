@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<%= render partial: '0p/general/icon_title', locals: {c: 'app_empresas', text: "Empresa : #{@objeto.app_empresa}"} %>
 
-<%= render @app_empresa %>
-
-<div>
-  <%= link_to "Edit this app empresa", edit_app_empresa_path(@app_empresa) %> |
-  <%= link_to "Back to app empresas", app_empresas_path %>
-
-  <%= button_to "Destroy this app empresa", @app_empresa, method: :delete %>
+<div class='row'>
+  <div class='col-md-6'>
+    <%= render partial: '0p/general/icon_title', locals: {c: 'app_nominas', text: "Empleados"} %>
+    <%= render partial: '0p/tabla/tabla', locals: {c: 'app_nominas'} %>
+  </div>
+  <div class='col-md-6'>
+    <%= render partial: '0p/general/icon_title', locals: {c: 'app_administradores', text: "Administradores"} %>
+    <%= render partial: '0p/tabla/tabla', locals: {c: 'app_administradores'} %>
+  </div>
 </div>

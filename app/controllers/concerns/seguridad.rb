@@ -10,19 +10,33 @@ module Seguridad
 	end
 
 	def perfil?
-		if ActiveRecord::Base.connection.table_exists? 'app_perfiles'
-			usuario_signed_in? ? AppPerfil.find_by(email: current_usuario.email).present? : false
-		else
-			usuario_signed_in? ? Perfil.find_by(email: current_usuario.email).present? : false
-		end
+		usuario_signed_in? ? AppPerfil.find_by(email: current_usuario.email).present? : false
 	end
 
 	def perfil_activo
-		if ActiveRecord::Base.connection.table_exists? 'app_perfiles'
-			usuario_signed_in? ? AppPerfil.find_by(email: current_usuario.email) : nil
+		usuario_signed_in? ? AppPerfil.find_by(email: current_usuario.email) : nil
+	end
+
+	def nomina_empresa?
+		nomina = AppNomina.find_by(email: current_usuario.email)
+		unless usuario_signed_in?
+			nomina.blank? ? false : nomina.empresa.present?
 		else
-			usuario_signed_in? ? Perfil.find_by(email: current_usuario.email) : nil
+			false
 		end
+	end
+
+	def administrador_empresa?
+		administrador = AppAdministrador.find_by(email: current_usuario.email)
+		unless usuario_signed_in?
+			administrador.blank? ? false : administrador.empresa.present?
+		else
+			false
+		end
+	end
+
+	def perfil_empresa?
+		nomina_empresa? or administrador_empresa?
 	end
 
 	def perfil_activo_id

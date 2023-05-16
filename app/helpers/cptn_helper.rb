@@ -37,6 +37,14 @@ module CptnHelper
 		end
 	end
 
+	def controller_icon
+		{
+			'app_empresas' => 'buildings',
+			'app_administradores' => 'person-square',
+			'app_nominas' => 'person-vcard'
+		}
+	end
+
 	def table_types_base
 		{
 			simple: '',

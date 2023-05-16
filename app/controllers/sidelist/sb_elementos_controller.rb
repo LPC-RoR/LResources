@@ -1,4 +1,4 @@
-class Sidebar::SbElementosController < ApplicationController
+class Sidelist::SbElementosController < ApplicationController
   before_action :authenticate_usuario!
   before_action :inicia_sesion
   before_action :set_sb_elemento, only: %i[ show edit update destroy ]

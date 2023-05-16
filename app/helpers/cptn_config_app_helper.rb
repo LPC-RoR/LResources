@@ -25,6 +25,9 @@ module CptnConfigAppHelper
 				tema: {clase: img_class[:centrada], size: 'half'},
 				foot: {clase: img_class[:centrada], size: 'quarter'}
 			},
+			h_size: {
+				title: 4
+			},
 			font_size: {
 				title: 4,
 				title_tema: 1,
@@ -32,4 +35,11 @@ module CptnConfigAppHelper
 			}
 		}
 	end
+
+	def capfig
+		{
+			class_table: 'table table-sm thead-dark'
+		}
+	end
+
 end

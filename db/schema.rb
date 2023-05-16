@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_215134) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_130232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_215134) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "owner_class"
+    t.integer "owner_id"
     t.index ["email"], name: "index_app_administradores_on_email"
+    t.index ["owner_class"], name: "index_app_administradores_on_owner_class"
+    t.index ["owner_id"], name: "index_app_administradores_on_owner_id"
   end
 
   create_table "app_archivos", force: :cascade do |t|
@@ -151,7 +155,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_215134) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "owner_class"
+    t.integer "owner_id"
     t.index ["email"], name: "index_app_nominas_on_email"
+    t.index ["owner_class"], name: "index_app_nominas_on_owner_class"
+    t.index ["owner_id"], name: "index_app_nominas_on_owner_id"
   end
 
   create_table "app_observaciones", force: :cascade do |t|

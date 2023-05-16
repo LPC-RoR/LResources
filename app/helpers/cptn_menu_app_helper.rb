@@ -12,8 +12,8 @@ module CptnMenuAppHelper
 	    # [ 'Item del menú', 'link', 'accesso', 'gly' ]
 	    [
 	        ['',        "/st_bandejas",         'nomina', 'inboxes'],
-	        ['',        "/app_repos/1",         'nomina', 'file-earmark-text'],
-	        ['',        "/app_repos/perfil",    'nomina', 'file-earmark-person'],
+	        ['',        "/app_repositorios",    'nomina', 'file-earmark-text'],
+	        ['',        "/tablas",       'admin', 'table'],
 	        ['',        "/app_empresas", 'admin', 'buildings'],
 	    ]
 

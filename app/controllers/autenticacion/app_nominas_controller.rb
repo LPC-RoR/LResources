@@ -22,7 +22,11 @@ class Autenticacion::AppNominasController < ApplicationController
   # GET /app_nominas/new
   def new
     carga_sidebar('Administración', 'Nómina')
-    @objeto = AppNomina.new
+
+    app_empresa = params[:app_empresa_id].blank? ? nil : AppEmpresa.find(params[:app_empresa_id])
+    owner_class = app_empresa.blank? ? nil : 'AppEmpresa'
+    owner_id = app_empresa.blank? ? nil : app_empresa.id
+    @objeto = AppNomina.new(owner_class: owner_class, owner_id: owner_id )
   end
 
   # GET /app_nominas/1/edit
@@ -37,7 +41,7 @@ class Autenticacion::AppNominasController < ApplicationController
     respond_to do |format|
       if @objeto.save
         set_redireccion
-        format.html { redirect_to @redireccion, notice: "App nomina was successfully created." }
+        format.html { redirect_to @redireccion, notice: "Nómina fue exitósamente creada." }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +55,7 @@ class Autenticacion::AppNominasController < ApplicationController
     respond_to do |format|
       if @objeto.update(app_nomina_params)
         set_redireccion
-        format.html { redirect_to @redireccion, notice: "App nomina was successfully updated." }
+        format.html { redirect_to @redireccion, notice: "Nómina fue exitósamente actualizada." }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,7 +69,7 @@ class Autenticacion::AppNominasController < ApplicationController
     set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to @redireccion, notice: "App nomina was successfully destroyed." }
+      format.html { redirect_to @redireccion, notice: "Nómina fue exitósamente eliminada." }
       format.json { head :no_content }
     end
   end
@@ -77,11 +81,11 @@ class Autenticacion::AppNominasController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = "/app_recursos/administracion?id=#{get_elemento_id(controller_name, 'Nómina')}" 
+      @redireccion = @objeto.owner_class.blank? ? tablas_path : @objeto.empresa
     end
 
     # Only allow a list of trusted parameters through.
     def app_nomina_params
-      params.require(:app_nomina).permit(:app_nomina, :email)
+      params.require(:app_nomina).permit(:app_nomina, :email, :owner_class, :owner_id)
     end
 end

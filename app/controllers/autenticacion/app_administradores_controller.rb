@@ -16,7 +16,10 @@ class Autenticacion::AppAdministradoresController < ApplicationController
 
   # GET /app_administradores/new
   def new
-    @objeto = AppAdministrador.new
+    app_empresa = params[:app_empresa_id].blank? ? nil : AppEmpresa.find(params[:app_empresa_id])
+    owner_class = app_empresa.blank? ? nil : 'AppEmpresa'
+    owner_id = app_empresa.blank? ? nil : app_empresa.id
+    @objeto = AppAdministrador.new(owner_class: owner_class, owner_id: owner_id )
   end
 
   # GET /app_administradores/1/edit
@@ -30,7 +33,7 @@ class Autenticacion::AppAdministradoresController < ApplicationController
     respond_to do |format|
       if @objeto.save
         set_redireccion
-        format.html { redirect_to @redireccion, notice: "App administrador was successfully created." }
+        format.html { redirect_to @redireccion, notice: "Administrador fue exitósamente creado." }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +47,7 @@ class Autenticacion::AppAdministradoresController < ApplicationController
     respond_to do |format|
       if @objeto.update(app_administrador_params)
         set_redireccion
-        format.html { redirect_to @redireccion, notice: "App administrador was successfully updated." }
+        format.html { redirect_to @redireccion, notice: "Administrador fue exitósamente actualizado." }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,7 +61,7 @@ class Autenticacion::AppAdministradoresController < ApplicationController
     set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to @redireccion, notice: "App administrador was successfully destroyed." }
+      format.html { redirect_to @redireccion, notice: "Administrador fue exitósamente eliminado." }
       format.json { head :no_content }
     end
   end
@@ -69,11 +72,11 @@ class Autenticacion::AppAdministradoresController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = "/app_recursos/administracion?id=#{get_elemento_id(controller_name, 'Administradores')}" 
+      @redireccion = @objeto.owner_class.blank? ? tablas_path : @objeto.empresa
     end
 
     # Only allow a list of trusted parameters through.
     def app_administrador_params
-      params.require(:app_administrador).permit(:app_administrador, :email)
+      params.require(:app_administrador).permit(:app_administrador, :email, :owner_class, :owner_id)
     end
 end

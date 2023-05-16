@@ -1,4 +1,4 @@
-class Sidebar::SbListasController < ApplicationController
+class Sidelist::SbListasController < ApplicationController
   before_action :authenticate_usuario!
   before_action :inicia_sesion
   before_action :set_sb_lista, only: %i[ show edit update destroy ]

@@ -8,8 +8,8 @@ module CptnTablaAppHelper
 	def app_new_button_conditions(controller)
 		if ['tar_tarifas', 'tar_servicios', 'tar_valores', 'tar_horas', 'registros', 'reg_reportes', 'tar_facturaciones', 'tar_valor_cuantias', 'tar_facturas'].include?(controller)
 			false
-		elsif ['causas', 'consultorias'].include?(controller)
-			controller_name == 'st_bandejas'
+		elsif ['app_nominas', 'app_administradores'].include?(controller)
+			false
 		else
 			true
 		end

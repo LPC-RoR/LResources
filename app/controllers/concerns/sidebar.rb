@@ -21,6 +21,9 @@ module Sidebar
 	end
 
 	def carga_sidebar_base(nombre, param_id)
+		puts "******************************** carga_sidebar_base"
+		puts nombre
+		puts param_id
 	    @sb_name = nombre
 
 	    @lista = get_lista(nombre)
@@ -65,6 +68,8 @@ module Sidebar
 			    @objeto = HlpTutorial.find_by(clave: @elemento.controlador)
 			    init_tabla('hlp_pasos', @objeto.hlp_pasos.order(:orden), false) unless @objeto.blank?
 		    elsif ['list', 'ulist'].include?(@elemento.despliegue)
+		    	puts "********************************* carga_sidebar"
+		    	puts @elemento
 				init_tabla(@elemento.controlador, @elemento.controlador.classify.constantize.all.order(:created_at), (not (@controlador.classify.constantize.all.count < 26 or @elemento.despliegue == 'ulist')))
 		    end
 		end

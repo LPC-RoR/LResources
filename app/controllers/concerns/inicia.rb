@@ -2,14 +2,8 @@ module Inicia
 	extend ActiveSupport::Concern
 
 	def verifica_primer_acceso
-		if ActiveRecord::Base.connection.table_exists? 'app_administradores'
-			@dog = AppAdministrador.find_by(email: dog_email)
-			@dog = AppAdministrador.create(app_administrador: dog_name, email: dog_email) if @dog.blank?
-		else
-			@dog = Administrador.find_by(email: dog_email)
-			@dog = Administrador.create(app_administrador: dog_name, email: dog_email) if @dog.blank?
-		end
-
+		@dog = AppAdministrador.find_by(email: dog_email)
+		@dog = AppAdministrador.create(app_administrador: dog_name, email: dog_email) if @dog.blank?
 	end
 
 	def inicia_sesion

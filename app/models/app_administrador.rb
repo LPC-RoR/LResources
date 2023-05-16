@@ -14,4 +14,8 @@ class AppAdministrador < ApplicationRecord
 		perfil.blank? ? 'Sin perfil' : 'Perfil activo'
 	end
 
+	def empresa
+		self.owner_class.blank? ? nil : AppEmpresa.find(self.owner_id)
+	end
+
 end

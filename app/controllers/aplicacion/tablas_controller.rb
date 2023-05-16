@@ -3,7 +3,8 @@ class Aplicacion::TablasController < ApplicationController
 
   # GET /tablas or /tablas.json
   def index
-    @coleccion = Tabla.all
+    init_tabla('app_nominas', AppNomina.where(owner_class: nil).order(:app_nomina), true)
+    add_tabla('app_administradores', AppAdministrador.where(owner_class: nil).order(:app_administrador), false)
   end
 
   # GET /tablas/1 or /tablas/1.json

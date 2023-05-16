@@ -1,14 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<%= render partial: '0p/general/icon_title', locals: {c: 'tablas', text: "Adminitradores y nómina general"} %>
 
-<h1>Tablas</h1>
-
-<div id="tablas">
-  <% @tablas.each do |tabla| %>
-    <%= render tabla %>
-    <p>
-      <%= link_to "Show this tabla", tabla %>
-    </p>
-  <% end %>
+<div class='row'>
+  <div class='col-md-6'>
+    <%= render partial: '0p/general/icon_title', locals: {c: 'app_nominas', text: "Empleados"} %>
+    <%= render partial: '0p/tabla/tabla', locals: {c: 'app_nominas'} %>
+    <%= render partial: '0p/tabla/btn_nuevo_o', locals: {o: @objeto, c: 'app_nominas'} %>
+  </div>
+  <div class='col-md-6'>
+    <%= render partial: '0p/general/icon_title', locals: {c: 'app_administradores', text: "Administradores"} %>
+    <%= render partial: '0p/tabla/tabla', locals: {c: 'app_administradores'} %>
+    <%= render partial: '0p/tabla/btn_nuevo_o', locals: {o: @objeto, c: 'app_administradores'} %>
+  </div>
 </div>
-
-<%= link_to "New tabla", new_tabla_path %>

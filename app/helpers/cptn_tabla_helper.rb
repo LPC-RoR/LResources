@@ -18,7 +18,7 @@ module CptnTablaHelper
 				false
 			else
 				aliasness = get_controller(controller)
-				if ['app_administradores', 'app_nominas', 'hlp_tutoriales', 'hlp_pasos'].include?(aliasness)
+				if ['app_administradores', 'app_nominas'].include?(aliasness)
 						seguridad_desde('admin')
 				elsif ['app_perfiles', 'usuarios', 'ind_palabras', 'app_contactos', 'app_directorios', 'app_documentos', 'app_archivos', 'app_enlaces'].include?(controller)
 					false
