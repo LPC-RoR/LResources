@@ -1,0 +1,5 @@
+<%= link_to  "/#{c}/new?class_name=#{o.blank? ? nil : o.class.name}&objeto_id=#{o.blank? ? nil : o.id}", class: "btn btn-outline-#{color(c)} btn-sm", data: { turbo_frame: "remote_modal" } do %>
+	<% unless controller_icon[c].present? %>
+		<i class="bi bi-<%=gly%>"></i>
+	<% end %>
+<% end %>

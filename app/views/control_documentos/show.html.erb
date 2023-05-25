@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @control_documento %>
+
+<div>
+  <%= link_to "Edit this control documento", edit_control_documento_path(@control_documento) %> |
+  <%= link_to "Back to control documentos", control_documentos_path %>
+
+  <%= button_to "Destroy this control documento", @control_documento, method: :delete %>
+</div>

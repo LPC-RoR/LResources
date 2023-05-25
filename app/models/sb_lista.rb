@@ -11,6 +11,8 @@ class SbLista < ApplicationRecord
 		's#sb_lista'
 	]
 
+	scope :ordered, -> { order(:sb_lista) }
+
 	has_many :sb_elementos
 
     validates_presence_of :sb_lista

@@ -1,12 +1,29 @@
-<%= render partial: '0p/general/icon_title', locals: {c: 'app_empresas', text: "Empresa : #{@objeto.app_empresa}"} %>
+<%= render partial: '0p/general/gly_title_size', locals: {gly: controller_icon['app_empresas'], title: "Empresa : #{@objeto.app_empresa}", size: 4 } %>
 
-<div class='row'>
-  <div class='col-md-6'>
-    <%= render partial: '0p/general/icon_title', locals: {c: 'app_nominas', text: "Empleados"} %>
-    <%= render partial: '0p/tabla/tabla', locals: {c: 'app_nominas'} %>
+<%= render partial: '0p/tabs/tabs', locals: { tabs: @tabs, options: @options, token: :tab } %>
+
+<% if @options[:tab] == 'Estructura' %>
+
+  <%#= render partial: '0p/general/icon_title', locals: {c: 'areas', text: "Áreas"} %>
+  <%= render partial: 'areas/partials/display_estructura', locals: {objeto: @objeto} %>
+  <%= render partial: '0p/tabla/btn_nuevo_o', locals: {o: @objeto, c: 'areas'} %>
+
+<% elsif @options[:tab] == 'Autenticacion' %>
+
+  <div class='row'>
+    <div class='col-md-6'>
+      <%= render partial: '0p/general/gly_title_size', locals: {gly: controller_icon['app_nominas'], title: "Nómina empleados", size: 5 } %>
+      <%= render partial: '0p/tabla/tabla', locals: {c: 'app_nominas'} %>
+    </div>
+    <div class='col-md-6'>
+      <%= render partial: '0p/general/gly_title_size', locals: {gly: controller_icon['app_administradores'], title: "Administradores", size: 5 } %>
+      <%= render partial: '0p/tabla/tabla', locals: {c: 'app_administradores'} %>
+    </div>
   </div>
-  <div class='col-md-6'>
-    <%= render partial: '0p/general/icon_title', locals: {c: 'app_administradores', text: "Administradores"} %>
-    <%= render partial: '0p/tabla/tabla', locals: {c: 'app_administradores'} %>
-  </div>
-</div>
+
+<% elsif @options[:tab] == 'Documentos' %>
+
+  <%= render partial: '0p/general/gly_title_size', locals: {gly: controller_icon['control_documentos'], title: "Control documentos de empleados", size: 5 } %>
+  <%= render partial: '0p/tabla/tabla', locals: {c: 'control_documentos'} %>
+  <%= render partial: '0p/tabla/btn_nuevo_o', locals: {o: @objeto, c: 'control_documentos'} %>
+<% end %>

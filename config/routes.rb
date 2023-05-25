@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :control_documentos
+  resources :are_ares
+  resources :empleados do
+    match :set_jefatura, via: :get, on: :member
+  end
+  resources :cargos
+  resources :areas
  
   devise_for :usuarios
   

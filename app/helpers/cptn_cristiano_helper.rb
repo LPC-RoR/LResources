@@ -34,7 +34,8 @@ module CptnCristianoHelper
 			'consultoria' => 'consultoría',
 			'codigo' => 'código',
 			'descripcion' => 'descripción',
-			'facturacion' => 'facturación'
+			'facturacion' => 'facturación',
+			'autenticacion' => 'autenticación'
 		}
 	end
 

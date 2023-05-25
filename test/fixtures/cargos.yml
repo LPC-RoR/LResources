@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cargo: MyString
+  dotacion: 1
+  area_id: 1
+
+two:
+  cargo: MyString
+  dotacion: 1
+  area_id: 1

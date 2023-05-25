@@ -5,14 +5,24 @@ class Autenticacion::AppEmpresasController < ApplicationController
 
   # GET /app_empresas or /app_empresas.json
   def index
+    carga_sidebar('Administración', 3)
     init_tabla('app_empresas', AppEmpresa.all.order(:app_empresa), false)
   end
 
   # GET /app_empresas/1 or /app_empresas/1.json
   def show
-    carga_sidebar('Administración', 'Nómina')
-    init_tabla('app_nominas', @objeto.empleados.order(:app_nomina), true)
-    add_tabla('app_administradores', @objeto.administradores.order(:app_administrador), false)
+    carga_sidebar('Administración', 3)
+
+    init_tab( { tab: ['Estructura', 'Autenticacion', 'Documentos'] }, true )
+
+    if @options[:tab] == 'Estructura'
+      init_tabla('areas', @objeto.areas.order(:area), false)
+    elsif @options[:tab] == 'Autenticacion'
+      init_tabla('app_nominas', @objeto.empleados.order(:app_nomina), true)
+      add_tabla('app_administradores', @objeto.administradores.order(:app_administrador), false)
+    elsif @options[:tab] == 'Documentos'
+      init_tabla('control_documentos', @objeto.control_documentos.order(:control_documento), false)
+    end
   end
 
   # GET /app_empresas/new
@@ -36,6 +46,7 @@ class Autenticacion::AppEmpresasController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @objeto.errors, status: :unprocessable_entity }
+        format.turbo_stream { render "0p/form/form_update", status: :unprocessable_entity }
       end
     end
   end
@@ -71,7 +82,7 @@ class Autenticacion::AppEmpresasController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = app_empresas_path
+      @redireccion = "/app_recursos/administracion?id=#{get_elemento_id('app_empresas', 'Empresas')}"
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,1 +1,3 @@
-<%= render partial: '0p/general/btn', locals: {texto: c_to_name(get_controller(c)), gly: 'plus-circle', link: get_new_link(get_controller(c)), clr: color(get_controller(c))} %>
+<%= link_to get_new_link(get_controller(c)), class: "btn btn-outline-#{color(get_controller(c))} btn-sm", data: { turbo_frame: "remote_modal" } do %>
+    <i class="bi bi-plus-circle"></i> <%= c_to_name(get_controller(c)) %>
+<% end %>

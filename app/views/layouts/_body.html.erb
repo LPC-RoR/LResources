@@ -12,9 +12,8 @@
 		</div>
 		<div class='col-md-9'>
 			<%= yield %>
-		</div>
-	</div>
-
 <% else %>
     <%= yield %>
 <% end %>
+
+<%= turbo_frame_tag "remote_modal", target: "_top" %>

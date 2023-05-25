@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jefatura_id: 1
+  subordinada_id: 1
+
+two:
+  jefatura_id: 1
+  subordinada_id: 1

@@ -1,0 +1,24 @@
+<div class='row'>
+	<div class='col-md-6' style="padding-left:<%="#{area.indent*10}"%>px">
+		<i class="bi bi-box-arrow-in-down-right"></i>
+		<%= link_to area.area, area, class: 'sb-link' %>
+	</div>
+	<div class='col-md-6'>
+		<%= render partial: '0p/tabla/btn_nuevo_line', locals: {c: 'areas', o: area, gly: 'box-arrow-in-down-right'} %>
+		<%= render partial: '0p/tabla/btn_nuevo_line', locals: {c: 'cargos', o: area, gly: 'person-bounding-box'} %>
+		<%= render partial: '0p/tabla/btn_editar', locals: {objeto: area} %>
+		<% if area.sub_areas.empty? and area.cargos.empty? %>
+			<%= render partial: '0p/tabla/btn_eliminar', locals: {objeto: area} %>
+		<% end %>
+	</div>
+</div>
+
+<% area.cargos.each do |cargo| %>
+	<%= render partial: 'cargos/partials/display_cargo', locals: {cargo: cargo} %>
+<% end %>
+
+<% unless area.sub_areas.empty? %>
+	<% area.sub_areas.each do |sub_area| %>
+		<%= render partial: 'areas/partials/display_area', locals: {area: sub_area} %>
+	<% end %>
+<% end %>

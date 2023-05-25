@@ -46,6 +46,7 @@ class Autenticacion::AppNominasController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @objeto.errors, status: :unprocessable_entity }
+        format.turbo_stream { render "0p/form/form_update", status: :unprocessable_entity }
       end
     end
   end
@@ -81,7 +82,7 @@ class Autenticacion::AppNominasController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = @objeto.owner_class.blank? ? tablas_path : @objeto.empresa
+      @redireccion = @objeto.owner_class.blank? ? "/app_recursos/administracion?id=#{get_elemento_id('app_nominas', 'Nómina')}" : "/app_empresas/#{@objeto.empresa.id}?html_options[tab]=Autenticacion"
     end
 
     # Only allow a list of trusted parameters through.

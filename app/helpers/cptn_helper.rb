@@ -39,9 +39,11 @@ module CptnHelper
 
 	def controller_icon
 		{
+			'sb_listas' => 'list-nested',
 			'app_empresas' => 'buildings',
 			'app_administradores' => 'person-square',
-			'app_nominas' => 'person-vcard'
+			'app_nominas' => 'person-vcard',
+			'control_documentos' => 'file-earmark-check'
 		}
 	end
 
@@ -81,6 +83,10 @@ module CptnHelper
 
 	def dma(date)
 		date.blank? ? '' : date.strftime("%d-%m-%Y")
+	end
+
+	def singular_o_plural(cant, singular)
+		cant == 1 ? singular : singular.pluralize
 	end
 
 # ******************************************************************** HOME

@@ -1,0 +1,32 @@
+<%= form_with(model: cargo) do |form| %>
+  <% if cargo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(cargo.errors.count, "error") %> prohibited this cargo from being saved:</h2>
+
+      <ul>
+        <% cargo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :cargo, style: "display: block" %>
+    <%= form.text_field :cargo %>
+  </div>
+
+  <div>
+    <%= form.label :dotacion, style: "display: block" %>
+    <%= form.number_field :dotacion %>
+  </div>
+
+  <div>
+    <%= form.label :area_id, style: "display: block" %>
+    <%= form.number_field :area_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

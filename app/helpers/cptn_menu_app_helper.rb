@@ -13,8 +13,9 @@ module CptnMenuAppHelper
 	    [
 	        ['',        "/st_bandejas",         'nomina', 'inboxes'],
 	        ['',        "/app_repositorios",    'nomina', 'file-earmark-text'],
-	        ['',        "/tablas",       'admin', 'table'],
-	        ['',        "/app_empresas", 'admin', 'buildings'],
+	        ['',        "/tablas",              'admin',  'table'],
+	        ['',        "/empresas/activa",     "admin",  'diagram-3'],
+	        ['',        "/app_empresas",        'admin',  'buildings'],
 	    ]
 
 	end

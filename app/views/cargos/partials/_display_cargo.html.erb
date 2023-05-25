@@ -1,0 +1,21 @@
+<div class='row'>
+	<div class='col-md-6' style="padding-left:<%="#{cargo.indent*10}"%>px">
+		<i class="bi bi-person-bounding-box"></i>
+		<%= link_to cargo.cargo, cargo, class: 'sb-link' %> <%= "[#{cargo.empleados.count}/#{cargo.dotacion}]" %>
+	</div>
+	<div class='col-md-6'>
+		<% if cargo.dotacion > cargo.empleados.count %>
+			<%= render partial: '0p/tabla/btn_nuevo_line', locals: {c: 'empleados', o: cargo, gly: 'person-plus'} %>
+		<% end %>
+		<%= render partial: '0p/tabla/btn_editar', locals: {objeto: cargo} %>
+		<% if cargo.empleados.empty? %>
+			<%= render partial: '0p/tabla/btn_eliminar', locals: {objeto: cargo} %>
+		<% end %>
+	</div>
+</div>
+
+<% unless cargo.empleados.empty? %>
+	<% cargo.empleados.each do |empleado| %>
+		<%= render partial: 'empleados/partials/display_empleado', locals: {empleado: empleado} %>
+	<% end %>
+<% end %>

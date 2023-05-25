@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Control documentos</h1>
+
+<div id="control_documentos">
+  <% @control_documentos.each do |control_documento| %>
+    <%= render control_documento %>
+    <p>
+      <%= link_to "Show this control documento", control_documento %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New control documento", new_control_documento_path %>

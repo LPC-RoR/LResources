@@ -1,0 +1,42 @@
+<%= form_with(model: control_documento) do |form| %>
+  <% if control_documento.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(control_documento.errors.count, "error") %> prohibited this control_documento from being saved:</h2>
+
+      <ul>
+        <% control_documento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :control_documento, style: "display: block" %>
+    <%= form.text_field :control_documento %>
+  </div>
+
+  <div>
+    <%= form.label :existencia, style: "display: block" %>
+    <%= form.text_field :existencia %>
+  </div>
+
+  <div>
+    <%= form.label :vencimiento, style: "display: block" %>
+    <%= form.check_box :vencimiento %>
+  </div>
+
+  <div>
+    <%= form.label :ownr_class, style: "display: block" %>
+    <%= form.text_field :ownr_class %>
+  </div>
+
+  <div>
+    <%= form.label :ownr_id, style: "display: block" %>
+    <%= form.number_field :ownr_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

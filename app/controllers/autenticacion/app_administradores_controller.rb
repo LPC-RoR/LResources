@@ -35,9 +35,11 @@ class Autenticacion::AppAdministradoresController < ApplicationController
         set_redireccion
         format.html { redirect_to @redireccion, notice: "Administrador fue exitósamente creado." }
         format.json { render :show, status: :created, location: @objeto }
+#        format.turbo_stream { render "autenticacion/app_administradores/create" }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @objeto.errors, status: :unprocessable_entity }
+        format.turbo_stream { render "0p/form/form_update", status: :unprocessable_entity }
       end
     end
   end
@@ -72,7 +74,7 @@ class Autenticacion::AppAdministradoresController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = @objeto.owner_class.blank? ? tablas_path : @objeto.empresa
+      @redireccion = @objeto.owner_class.blank? ? "/app_recursos/administracion?id=#{get_elemento_id('app_administradores', 'Administradores')}" : "/app_empresas/#{@objeto.empresa.id}?html_options[tab]=Autenticacion"
     end
 
     # Only allow a list of trusted parameters through.

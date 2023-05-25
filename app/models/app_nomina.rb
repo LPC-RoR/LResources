@@ -9,8 +9,10 @@ class AppNomina < ApplicationRecord
 	# intentaremos resolver esto con relaciones para eliminar tablas
 #	has_many :st_perfil_modelos
 
-	validates :app_nomina, :email, presence: true
-	validates :app_nomina, :email, uniqueness: true
+	validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'formato de email incorrecto'}
+	validates :app_nomina, presence: true, uniqueness: true
+
+	scope :ordered, -> { where(owner_id: nil).order(:app_nomina) }
 
 	# se usan si la aplicacion tiene Tarifas
 	def tar_bases

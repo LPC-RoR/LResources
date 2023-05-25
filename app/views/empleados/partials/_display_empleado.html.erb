@@ -1,0 +1,27 @@
+<div class='row'>
+	<div class='col-md-6' style="padding-left:<%="#{empleado.indent*10}"%>px">
+		<small>
+		<i class="bi bi-person-vcard"></i>
+		<%= link_to empleado.nombre, empleado, class: 'sb-link' %> <%= "[#{empleado.rut}]" %>
+		<% if empleado.jefatura %>
+			<i class="bi bi-person-circle"></i>
+		<% end %>
+		</small>
+	</div>
+	<div class='col-md-6'>
+		<% if (not empleado.cargo.area.jefatura?) or empleado.jefatura %>
+			<%= render partial: '0p/tabla/btn_general', locals: {link: link_x_btn(empleado, '/set_jefatura', true), gly: 'person-circle'} %>
+		<% end %>
+		<%#= render partial: '0p/tabla/btn_nuevo_line', locals: {c: 'empleados', o: cargo, gly: 'person-plus'} %>
+		<%= render partial: '0p/tabla/btn_editar', locals: {objeto: empleado} %>
+		<%# if empleado.####.empty? %>
+			<%= render partial: '0p/tabla/btn_eliminar', locals: {objeto: empleado} %>
+		<%# end %>
+	</div>
+</div>
+
+<%# unless cargo.empleados.empty? %>
+	<%# cargo.empleados.each do |empleado| %>
+		<%#= render partial: 'empleados/partials/display_empleado', locals: {empleado: empleado} %>
+	<%# end %>
+<%# end %>

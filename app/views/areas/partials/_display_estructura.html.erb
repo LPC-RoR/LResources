@@ -1,0 +1,9 @@
+<div class='container'>
+<% unless objeto.areas_base.empty? %>
+	<% objeto.areas_base.each do |area_base| %>
+		<%= render partial: 'areas/partials/display_area', locals: {area: area_base} %>
+	<% end %>
+<% else %>
+	No hay áreas asociadas a esta empresa!
+<% end %>
+</div>

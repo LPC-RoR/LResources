@@ -1,27 +1,26 @@
-<div class="container-fluid">
+<h1><%= render partial: '0p/general/form_icon_text', locals: {text: m_to_name(@objeto.class.name), size: config[:font_size][:title]} %></h1>
 
-	<%= render partial: '0p/general/form_icon_text', locals: {text: m_to_name(@objeto.class.name), size: config[:font_size][:title]} %>
+<%= form_with(model: @objeto) do |form| %>
 
-	<%= form_with(model: @objeto, local: true) do |form| %>
-		<% if @objeto.errors.any? %>
-		<div id="error_explanation">
-			<h4 class='text-muted'><%= @objeto.errors.count %> <%= @objeto.errors.count == 1 ? 'error' : 'errores' %> evitan que este registro sea grabado:</h4>
+	<% if @objeto.errors.any? %>
+		<div style="color: red">
+		  <h4><%= @objeto.errors.count %> <%= singular_o_plural(@objeto.errors.count, "error") %> evitan que este registro sea guardado:</h4>
 
-			<ul>
-			<% @objeto.errors.full_messages.each do |message| %>
-			<li class='text-muted'><%= message %></li>
-			<% end %>
-			</ul>
-  
+		  <ul>
+		    <% @objeto.errors.each do |error| %>
+		      <li><%= error.full_message %></li>
+		    <% end %>
+		  </ul>
 		</div>
-		<% end %>
+	<% end %>
 
 		<%= render partial: detail_partial(controller_name), locals: {c: controller_name, form: form} %>
 
-		</br>
+	</br>
 
-		<div class="actions">
-		<%= form.submit "#{ action_name == 'new' ? 'Crear' : 'Modificar'} #{m_to_name(@objeto.class.name)}" %>
-		</div>
-	<% end %>
-</div>
+	<div class="actions">
+		<%= form.submit "#{ action_name == 'new' ? 'Crear' : 'Modificar'} #{m_to_name(@objeto.class.name)}", class: "btn btn-success btn-block" %>
+	</div>
+
+<% end %>
+

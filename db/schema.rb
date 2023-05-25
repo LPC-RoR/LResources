@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_08_130232) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_201454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -190,6 +190,69 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_130232) do
     t.index ["app_repositorio"], name: "index_app_repositorios_on_app_repositorio"
     t.index ["owner_class"], name: "index_app_repositorios_on_owner_class"
     t.index ["owner_id"], name: "index_app_repositorios_on_owner_id"
+  end
+
+  create_table "are_ares", force: :cascade do |t|
+    t.integer "jefatura_id"
+    t.integer "subordinada_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jefatura_id"], name: "index_are_ares_on_jefatura_id"
+    t.index ["subordinada_id"], name: "index_are_ares_on_subordinada_id"
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.string "area"
+    t.string "ownr_class"
+    t.integer "ownr_id"
+    t.integer "app_empresa_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_empresa_id"], name: "index_areas_on_app_empresa_id"
+    t.index ["ownr_class"], name: "index_areas_on_ownr_class"
+    t.index ["ownr_id"], name: "index_areas_on_ownr_id"
+  end
+
+  create_table "cargos", force: :cascade do |t|
+    t.string "cargo"
+    t.integer "dotacion"
+    t.integer "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_cargos_on_area_id"
+    t.index ["cargo"], name: "index_cargos_on_cargo"
+    t.index ["dotacion"], name: "index_cargos_on_dotacion"
+  end
+
+  create_table "control_documentos", force: :cascade do |t|
+    t.string "control_documento"
+    t.string "existencia"
+    t.string "vencimiento"
+    t.string "ownr_class"
+    t.integer "ownr_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["control_documento"], name: "index_control_documentos_on_control_documento"
+    t.index ["existencia"], name: "index_control_documentos_on_existencia"
+    t.index ["ownr_class"], name: "index_control_documentos_on_ownr_class"
+    t.index ["ownr_id"], name: "index_control_documentos_on_ownr_id"
+    t.index ["vencimiento"], name: "index_control_documentos_on_vencimiento"
+  end
+
+  create_table "empleados", force: :cascade do |t|
+    t.string "nombres"
+    t.string "apellido_paterno"
+    t.string "apellido_materno"
+    t.string "rut"
+    t.string "direccion"
+    t.string "telefono"
+    t.string "sexo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "cargo_id"
+    t.boolean "jefatura"
+    t.index ["cargo_id"], name: "index_empleados_on_cargo_id"
+    t.index ["jefatura"], name: "index_empleados_on_jefatura"
   end
 
   create_table "h_imagenes", force: :cascade do |t|
