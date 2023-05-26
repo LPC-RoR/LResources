@@ -12,4 +12,8 @@ class Empleado < ApplicationRecord
 	def indent
 		self.cargo.indent + 1
 	end
+
+	def repositorio
+		AppRepositorio.where(owner_class: self.class.name).find_by(owner_id: self.id)
+	end
 end

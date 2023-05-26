@@ -10,7 +10,13 @@ class EmpleadosController < ApplicationController
   def show
   
     init_tab( { tab: ['Estructura', 'Documentos'] }, true )
+
+    # Verifica existencia repositorio
+    AppRepositorio.create(owner_class: @objeto.class.name, owner_id: @objeto.id, app_repositorio: @objeto.nombre) if @objeto.repositorio.blank?
   
+    init_tabla('app_directorios', @objeto.repositorio.directorios.order(:app_directorio), false)
+    add_tabla('app_documentos', @objeto.repositorio.documentos.order(:app_documento), false) 
+
   end
 
   # GET /empleados/new

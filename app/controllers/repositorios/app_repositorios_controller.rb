@@ -7,7 +7,7 @@ class Repositorios::AppRepositoriosController < ApplicationController
   def index
     if usuario_signed_in?
       # Repositorio de la plataforma
-      general_sha1 = Digest::SHA1.hexdigest(" Repositorio General")
+      general_sha1 = Digest::SHA1.hexdigest("Repositorio General")
       @repositorio_general = AppRepositorio.find_by(app_repositorio: general_sha1)
       @repositorio_general = AppRepositorio.create(app_repositorio: general_sha1) if @repositorio_general.blank?
 

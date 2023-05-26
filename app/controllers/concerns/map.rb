@@ -4,7 +4,7 @@ module Map
 	## -------------------------------------------------------- BANDEJAS
 
 	def app_bandeja_controllers
-		['app_directorios', 'app_documentos', 'app_enlaces', 'tar_tarifas', 'tar_detalles', 'tar_facturas', 'app_repos', 'registros', 'reg_reportes', 'tar_horas']
+		['app_enlaces', 'tar_tarifas', 'tar_detalles', 'tar_facturas', 'registros', 'reg_reportes', 'tar_horas']
 	end
 
 	def bandeja_controllers
@@ -19,7 +19,7 @@ module Map
 	def init_bandejas
 		if bandeja_display?
 			if usuario_signed_in?
-				# PRECAUCION @bandejas puede seu una lista de dos clases distintas
+				# PRECAUCION @bandejas puede ser una lista de dos clases distintas
 				if seguridad_desde('admin')
 					@bandejas = StModelo.all.order(:st_modelo)
 				elsif seguridad_desde('nomina')

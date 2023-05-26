@@ -43,6 +43,10 @@ module CptnHelper
 			'app_empresas' => 'buildings',
 			'app_administradores' => 'person-square',
 			'app_nominas' => 'person-vcard',
+			'app_repositorios' => 'archive',
+			'app_directorios' => 'folder-plus',
+			'cargos' => 'person-bounding-box',
+			'empleados' => 'person-vcard',
 			'control_documentos' => 'file-earmark-check'
 		}
 	end
