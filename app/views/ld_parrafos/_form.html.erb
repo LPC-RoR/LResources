@@ -1,0 +1,37 @@
+<%= form_with(model: ld_parrafo) do |form| %>
+  <% if ld_parrafo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(ld_parrafo.errors.count, "error") %> prohibited this ld_parrafo from being saved:</h2>
+
+      <ul>
+        <% ld_parrafo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :ld_parrafo, style: "display: block" %>
+    <%= form.text_field :ld_parrafo %>
+  </div>
+
+  <div>
+    <%= form.label :texto, style: "display: block" %>
+    <%= form.text_area :texto %>
+  </div>
+
+  <div>
+    <%= form.label :ownr_class, style: "display: block" %>
+    <%= form.text_field :ownr_class %>
+  </div>
+
+  <div>
+    <%= form.label :ownr_id, style: "display: block" %>
+    <%= form.number_field :ownr_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

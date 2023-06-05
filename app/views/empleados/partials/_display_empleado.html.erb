@@ -2,7 +2,7 @@
 	<div class='col-md-6' style="padding-left:<%="#{empleado.indent*10}"%>px">
 		<small>
 		<i class="bi bi-person-vcard"></i>
-		<%= link_to empleado.nombre, empleado, class: 'sb-link' %> <%= "[#{empleado.rut}]" %>
+		<%= link_to empleado.empleado, empleado, class: 'sb-link' %> <%= "[#{empleado.rut}]" %>
 		<% if empleado.jefatura %>
 			<i class="bi bi-person-circle"></i>
 		<% end %>

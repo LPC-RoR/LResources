@@ -71,6 +71,7 @@ class Repositorios::AppRepositoriosController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @objeto.errors, status: :unprocessable_entity }
+        format.turbo_stream { render "0p/form/form_update", status: :unprocessable_entity }
       end
     end
   end

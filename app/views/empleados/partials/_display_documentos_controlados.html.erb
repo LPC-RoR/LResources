@@ -1,0 +1,14 @@
+Exigencia de la  empresa
+	<ul>
+		<% @documentos_empresa.each do |documento| %>
+			<%= render partial: '/empleados/partials/item_documento', locals: {documento: documento} %>
+		<% end %>
+	</ul>
+
+
+Exigencia del cargo
+	<ul>
+		<% @documentos_cargo.each do |documento| %>
+			<%= render partial: '/empleados/partials/item_documento', locals: {documento: documento} %>
+		<% end %>
+	</ul>

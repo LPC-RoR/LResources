@@ -11,7 +11,7 @@ class Repositorios::AppDirectoriosController < ApplicationController
   def show
     @padres = AppDirectorio.where(id: @objeto.padres_ids)
 #    init_tabla('controller_name', Tabla, init, paginate)
-    init_tabla('app_directorios', @objeto.children, false)
+    init_tabla('app_directorios', @objeto.directorios, false)
     add_tabla('app_documentos', @objeto.documentos, false)
     add_tabla('app_archivos', @objeto.archivos, false)
   end
@@ -40,11 +40,12 @@ class Repositorios::AppDirectoriosController < ApplicationController
     respond_to do |format|
       if @objeto.save
         set_redireccion
-        format.html { redirect_to @redireccion, notice: "App directorio was successfully created." }
+        format.html { redirect_to @redireccion, notice: "Directorio fue exitósamente creado." }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @objeto.errors, status: :unprocessable_entity }
+        format.turbo_stream { render "0p/form/form_update", status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +55,7 @@ class Repositorios::AppDirectoriosController < ApplicationController
     respond_to do |format|
       if @objeto.update(app_directorio_params)
         set_redireccion
-        format.html { redirect_to @redireccion, notice: "App directorio was successfully updated." }
+        format.html { redirect_to @redireccion, notice: "Directorio fue exitósamente actualizado." }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,7 +69,7 @@ class Repositorios::AppDirectoriosController < ApplicationController
     set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to @redireccion, notice: "App directorio was successfully destroyed." }
+      format.html { redirect_to @redireccion, notice: "Directorio fue exitósamente eliminado." }
       format.json { head :no_content }
     end
   end
@@ -80,7 +81,13 @@ class Repositorios::AppDirectoriosController < ApplicationController
     end
 
     def set_redireccion
-      @redireccion = app_repositorios_path
+      if @objeto.owner.class.name == 'AppDirectorio'
+        @redireccion = @objeto.owner
+      elsif @objeto.objeto_destino.class.name == 'Empleado'
+        @redireccion = "/empleados/#{@objeto.objeto_destino.id}?html_options[tab]=Documentos"
+      else
+        @redireccion = app_repositorios_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

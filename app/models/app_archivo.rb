@@ -7,14 +7,24 @@ class AppArchivo < ApplicationRecord
 		'created_at'
 	]
 
-	mount_uploader :archivo, ArchivoUploader
+	mount_uploader :app_archivo, ArchivoUploader
 
-	def padre
+    validates_presence_of :app_archivo
+
+	def owner
 		self.owner_class.constantize.find(self.owner_id)
 	end
 
 	def d_nombre
 		(self.nombre.blank? ? (self.documento.present? ? self.documento.documento : self.archivo.url.split('/').last) : self.nombre)
+	end
+
+	def existencia
+		self.owner.doc_existencia
+	end
+
+	def vencimiento
+		self.owner.doc_vencimiento
 	end
 
 end

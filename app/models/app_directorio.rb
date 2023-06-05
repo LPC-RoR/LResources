@@ -7,6 +7,8 @@ class AppDirectorio < ApplicationRecord
 #	has_many :app_archivos
 #	has_many :app_imagenes
 
+    validates_presence_of :app_directorio
+
 	has_one  :parent_relation, :foreign_key => "child_id", :class_name => "AppDirDir"
 	has_many :child_relations, :foreign_key => "parent_id", :class_name => "AppDirDir"
 
@@ -15,6 +17,10 @@ class AppDirectorio < ApplicationRecord
 
 	def documentos
 		AppDocumento.where(owner_class: 'AppDirectorio').where(owner_id: self.id)
+	end
+
+	def directorios
+		AppDirectorio.where(owner_class: self.class.name, owner_id: self.id)
 	end
 
 	def archivos
@@ -33,6 +39,18 @@ class AppDirectorio < ApplicationRecord
 			objeto = objeto.parent	
 		end
 		ids.reverse
+	end
+
+	def existe_documento?(documento)
+		not self.documentos.find_by(app_documento: documento).blank?
+	end
+
+	def control?
+		self.directorio_control
+	end
+
+	def objeto_destino
+		['AppDirectorio', 'AppRepositorio'].include?(self.owner_class) ? self.owner.objeto_destino : self.owner
 	end
 
 end

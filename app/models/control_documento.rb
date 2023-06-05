@@ -10,4 +10,8 @@ class ControlDocumento < ApplicationRecord
 		self.ownr_class.constantize.find(self.ownr_id)
 	end
 
+	def ruta
+		self.control_documento.split('::').join('/')
+	end
+
 end

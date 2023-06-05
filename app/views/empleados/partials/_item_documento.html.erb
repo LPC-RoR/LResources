@@ -1,0 +1,11 @@
+<li>
+	<% if @objeto.repositorio.existe_documento?(documento.control_documento) %>
+		<%= documento.ruta %>
+	<% else %>
+		<%= link_to documento.ruta, "/empleados/#{@objeto.id}/crea_documento?control_id=#{documento.id}", class: 'sb-link' %>
+	<% end %> : 
+	<small>
+	<i class="bi bi-file-check"></i> <%= documento.existencia %>
+	<i class="bi bi-calendar-event"></i> <%= documento.vencimiento %>
+	</small>
+</li>

@@ -2,9 +2,9 @@
 <%= render partial: '0p/form_fields/text', locals: { form: form, token: :control_documento } %>
 
 <%= render partial: '0p/form_fields/label', locals: { form: form, label: 'Existencia', v: true } %>
-<%= render partial: '0p/form_fields/radio', locals: { form: form, token: :existencia, radio_list: ['obligatorio', 'opcional'] } %>
+<%= render partial: '0p/form_fields/radio', locals: { form: form, token: :existencia, radio_list: ['opcional', 'obligatorio'] } %>
 <%= render partial: '0p/form_fields/label', locals: { form: form, label: 'Vencimiento', v: true } %>
-<%= render partial: '0p/form_fields/radio', locals: { form: form, token: :vencimiento, radio_list: ['siempre', 'nunca', 'opcional'] } %>
+<%= render partial: '0p/form_fields/radio', locals: { form: form, token: :vencimiento, radio_list: ['nunca', 'opcional', 'siempre'] } %>
 
 <%= render partial: '0p/form_fields/hidden', locals: { form: form, token: :ownr_class } %>
 <%= render partial: '0p/form_fields/hidden', locals: { form: form, token: :ownr_id } %>

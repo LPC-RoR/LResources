@@ -8,10 +8,10 @@
   		<% end  %>
   	<% end %>
 
-    <!-- Directorios-->
+    <!-- Documentos-->
     <% unless @coleccion["#{tag unless tag.blank?}app_documentos"].blank? %>
       <% @coleccion["#{tag unless tag.blank?}app_documentos"].each do |doc| %>
-        <%= render partial: "/repositorios/app_directorios/partials/modelo", locals: {a: 'index', objeto: doc} %>
+        <%= render partial: "/repositorios/app_documentos/partials/modelo", locals: {a: 'index', objeto: doc} %>
       <% end  %>
     <% end %>
 

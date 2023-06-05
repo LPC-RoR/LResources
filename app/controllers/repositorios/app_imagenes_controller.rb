@@ -1,8 +1,9 @@
 class Repositorios::AppImagenesController < ApplicationController
   before_action :authenticate_usuario!
   before_action :inicia_sesion
-  before_action :set_app_imagen, only: [:show, :edit, :update, :destroy]
+  before_action :set_app_imagen, only: [:show, :edit, :update, :destroy, :arriba, :abajo]
   before_action :carga_solo_sidebar, only: %i[ show new edit create update ]
+  after_action  :ordena_lista, nly: :destroy
 
   include Sidebar
 
@@ -18,7 +19,8 @@ class Repositorios::AppImagenesController < ApplicationController
 
   # GET /app_imagenes/new
   def new
-    @objeto = AppImagen.new(owner_class: params[:class_name], owner_id: params[:objeto_id])
+    owner = params[:class_name].constantize.find(params[:objeto_id])
+    @objeto = AppImagen.new(owner_class: params[:class_name], owner_id: params[:objeto_id], orden: owner.imagenes.count + 1)
   end
 
   # GET /app_imagenes/1/edit
@@ -33,11 +35,12 @@ class Repositorios::AppImagenesController < ApplicationController
     respond_to do |format|
       if @objeto.save
         set_redireccion
-        format.html { redirect_to @redireccion, notice: 'App imagen was successfully created.' }
+        format.html { redirect_to @redireccion, notice: 'Imagen fue exitósamente creado.' }
         format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new }
         format.json { render json: @objeto.errors, status: :unprocessable_entity }
+        format.turbo_stream { render "0p/form/form_update", status: :unprocessable_entity }
       end
     end
   end
@@ -48,11 +51,42 @@ class Repositorios::AppImagenesController < ApplicationController
     respond_to do |format|
       if @objeto.update(app_imagen_params)
         set_redireccion
-        format.html { redirect_to @redireccion, notice: 'App imagen was successfully updated.' }
+        format.html { redirect_to @redireccion, notice: 'Imagen fue exitósamente actualizada.' }
         format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit }
         format.json { render json: @objeto.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def arriba
+    owner = @objeto.owner
+    siguiente = owner.imagenes.find_by(orden: @objeto.orden - 1)
+    @objeto.orden -= 1
+    @objeto.save
+    siguiente.orden += 1
+    siguiente.save
+
+    redirect_to owner
+  end
+
+  def abajo
+    owner = @objeto.owner
+    anterior = owner.imagenes.find_by(orden: @objeto.orden + 1)
+    @objeto.orden += 1
+    @objeto.save
+    anterior.orden -= 1
+    anterior.save
+
+    redirect_to owner
+  end
+
+  def ordena_lista
+    @objeto.owner.imagenes.order(:orden).each_with_index do |val, index|
+      if val.orden != index + 1
+        val.orden = index + 1
+        val.save
       end
     end
   end
@@ -63,7 +97,7 @@ class Repositorios::AppImagenesController < ApplicationController
     set_redireccion
     @objeto.destroy
     respond_to do |format|
-      format.html { redirect_to @redireccion, notice: 'App imagen was successfully destroyed.' }
+      format.html { redirect_to @redireccion, notice: 'Imagen fue exitósamente eliminada.' }
       format.json { head :no_content }
     end
   end
@@ -84,6 +118,6 @@ class Repositorios::AppImagenesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def app_imagen_params
-      params.require(:app_imagen).permit(:app_imagen, :imagen, :credito_imagen, :owner_class, :owner_id)
+      params.require(:app_imagen).permit(:app_imagen, :owner_class, :owner_id, :orden, :app_imagen_cache)
     end
 end

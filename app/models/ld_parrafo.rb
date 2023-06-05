@@ -1,0 +1,2 @@
+class LdParrafo < ApplicationRecord
+end

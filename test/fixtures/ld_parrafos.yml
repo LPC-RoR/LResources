@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ld_parrafo: MyString
+  texto: MyText
+  ownr_class: MyString
+  ownr_id: 1
+
+two:
+  ld_parrafo: MyString
+  texto: MyText
+  ownr_class: MyString
+  ownr_id: 1

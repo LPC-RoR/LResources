@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :ld_parrafos
+  resources :ld_formatos
   resources :control_documentos
   resources :are_ares
   resources :empleados do
     match :set_jefatura, via: :get, on: :member
+    match :crea_documento, via: :get, on: :member
   end
   resources :cargos
   resources :areas
@@ -63,7 +66,13 @@ Rails.application.routes.draw do
     resources :app_dir_dires
     resources :app_documentos
     resources :app_archivos
-    resources :app_imagenes
+    resources :app_imagenes do
+      match :arriba, via: :get, on: :member
+      match :abajo, via: :get, on: :member
+    end
+    resources :app_escaneos do
+      match :crea_escaneo, via: :get, on: :collection
+    end
   end
 
   scope module: 'sidelist' do

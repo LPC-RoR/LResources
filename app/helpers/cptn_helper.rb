@@ -44,7 +44,9 @@ module CptnHelper
 			'app_administradores' => 'person-square',
 			'app_nominas' => 'person-vcard',
 			'app_repositorios' => 'archive',
-			'app_directorios' => 'folder-plus',
+			'app_directorios' => 'folder',
+			'app_documentos' => 'journal',
+			'app_escaneos' => 'images',
 			'cargos' => 'person-bounding-box',
 			'empleados' => 'person-vcard',
 			'control_documentos' => 'file-earmark-check'
@@ -63,6 +65,10 @@ module CptnHelper
 	end
 
 # ******************************************************************** HELPERS DE USO GENERAL
+
+	def nombre(objeto)
+		objeto.send(objeto.class.name.tableize.singularize)
+	end
 
 	def perfiles_operativos
 		AppNomina.all.map {|nomina| nomina.nombre}.union(AppAdministrador.all.map {|admin| admin.administrador unless admin.email == 'hugo.chinga.g@gmail.com'}.compact)

@@ -79,3 +79,5 @@ gem "devise", "~> 4.8"
 gem "kaminari"
 
 gem 'popper_js', '~> 2.11.7'
+
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'

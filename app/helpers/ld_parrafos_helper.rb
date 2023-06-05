@@ -1,0 +1,2 @@
+module LdParrafosHelper
+end

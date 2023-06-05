@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ld formatos</h1>
+
+<div id="ld_formatos">
+  <% @ld_formatos.each do |ld_formato| %>
+    <%= render ld_formato %>
+    <p>
+      <%= link_to "Show this ld formato", ld_formato %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ld formato", new_ld_formato_path %>

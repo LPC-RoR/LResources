@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_201454) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_192324) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_201454) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "directorio_control"
     t.index ["app_directorio"], name: "index_app_directorios_on_app_directorio"
     t.index ["owner_class"], name: "index_app_directorios_on_owner_class"
     t.index ["owner_id"], name: "index_app_directorios_on_owner_id"
@@ -74,8 +75,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_201454) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "existencia"
+    t.string "vencimiento"
+    t.boolean "documento_control"
+    t.string "referencia"
+    t.index ["existencia"], name: "index_app_documentos_on_existencia"
     t.index ["owner_class"], name: "index_app_documentos_on_owner_class"
     t.index ["owner_id"], name: "index_app_documentos_on_owner_id"
+    t.index ["referencia"], name: "index_app_documentos_on_referencia"
+    t.index ["vencimiento"], name: "index_app_documentos_on_vencimiento"
   end
 
   create_table "app_empresas", force: :cascade do |t|
@@ -97,6 +105,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_201454) do
     t.index ["owner_id"], name: "index_app_enlaces_on_owner_id"
   end
 
+  create_table "app_escaneos", force: :cascade do |t|
+    t.string "ownr_class"
+    t.integer "ownr_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ownr_class"], name: "index_app_escaneos_on_ownr_class"
+    t.index ["ownr_id"], name: "index_app_escaneos_on_ownr_id"
+  end
+
   create_table "app_imagenes", force: :cascade do |t|
     t.string "app_imagen"
     t.string "imagen"
@@ -105,7 +122,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_201454) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "orden"
     t.index ["app_imagen"], name: "index_app_imagenes_on_app_imagen"
+    t.index ["orden"], name: "index_app_imagenes_on_orden"
     t.index ["owner_class"], name: "index_app_imagenes_on_owner_class"
     t.index ["owner_id"], name: "index_app_imagenes_on_owner_id"
   end
@@ -275,6 +294,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_201454) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["h_tema"], name: "index_h_temas_on_h_tema"
+  end
+
+  create_table "ld_formatos", force: :cascade do |t|
+    t.string "ld_formato"
+    t.string "ownr_class"
+    t.integer "ownr_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ownr_class"], name: "index_ld_formatos_on_ownr_class"
+    t.index ["ownr_id"], name: "index_ld_formatos_on_ownr_id"
+  end
+
+  create_table "ld_parrafos", force: :cascade do |t|
+    t.string "ld_parrafo"
+    t.text "texto"
+    t.string "ownr_class"
+    t.integer "ownr_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ownr_class"], name: "index_ld_parrafos_on_ownr_class"
+    t.index ["ownr_id"], name: "index_ld_parrafos_on_ownr_id"
   end
 
   create_table "sb_elementos", force: :cascade do |t|

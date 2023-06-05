@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ld parrafos</h1>
+
+<div id="ld_parrafos">
+  <% @ld_parrafos.each do |ld_parrafo| %>
+    <%= render ld_parrafo %>
+    <p>
+      <%= link_to "Show this ld parrafo", ld_parrafo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ld parrafo", new_ld_parrafo_path %>

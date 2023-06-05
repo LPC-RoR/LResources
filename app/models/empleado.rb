@@ -5,7 +5,7 @@ class Empleado < ApplicationRecord
 
 	validates :rut, presence: true, rut_valido: true
 
-	def nombre
+	def empleado
 		"#{self.nombres} #{self.apellido_paterno} #{self.apellido_materno}"
 	end
 

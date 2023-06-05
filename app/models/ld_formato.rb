@@ -1,0 +1,2 @@
+class LdFormato < ApplicationRecord
+end
