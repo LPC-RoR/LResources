@@ -1,0 +1,22 @@
+<%= form_with(model: ld_tipo_parrafo) do |form| %>
+  <% if ld_tipo_parrafo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(ld_tipo_parrafo.errors.count, "error") %> prohibited this ld_tipo_parrafo from being saved:</h2>
+
+      <ul>
+        <% ld_tipo_parrafo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :ld_tipo_parrafo, style: "display: block" %>
+    <%= form.text_field :ld_tipo_parrafo %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

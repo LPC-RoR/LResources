@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ld_tipo_parrafo: MyString
+
+two:
+  ld_tipo_parrafo: MyString

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ld tipo parrafos</h1>
+
+<div id="ld_tipo_parrafos">
+  <% @ld_tipo_parrafos.each do |ld_tipo_parrafo| %>
+    <%= render ld_tipo_parrafo %>
+    <p>
+      <%= link_to "Show this ld tipo parrafo", ld_tipo_parrafo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ld tipo parrafo", new_ld_tipo_parrafo_path %>

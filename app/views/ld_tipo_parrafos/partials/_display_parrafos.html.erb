@@ -1,0 +1,42 @@
+<% @coleccion['ld_tipo_parrafos'].each do |tipo_parrafo| %>
+	<div class="row">
+		<div class="col-md-8">
+			<small><%= tipo_parrafo.ld_tipo_parrafo %></small></br>
+		</div>
+		<div class="col-md-4">
+			<small>
+			<%= render partial: '0p/list/link_nuevo_o', locals: {o: tipo_parrafo, c: 'ld_parrafos'} %>
+			<%= render partial: '0p/list/link_editar', locals: {objeto: tipo_parrafo} %>
+			<%= render partial: '0p/list/link_eliminar', locals: {objeto: tipo_parrafo} %>
+			</small>
+		</div>
+	</div>
+
+	<small>
+	<% tipo_parrafo.ld_parrafos.order(:ld_parrafo).each do |parrafo| %>
+		<div class="row">
+			<div class="col-md-8">
+				<div style='padding-left: 20px;'>
+				  <a class="sb-link" data-bs-toggle="collapse" href="#parrafo<%=parrafo.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+				    <%= parrafo.ld_parrafo %>
+				  </a>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<%= render partial: '0p/list/link_editar', locals: {objeto: parrafo} %>
+				<%= render partial: '0p/list/link_eliminar', locals: {objeto: parrafo} %>
+			</div>
+		</div>
+
+		<div class="collapse" id="parrafo<%=parrafo.id%>">
+		  <div class="card card-body">
+		    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+		  </div>
+		</div>
+
+
+	<% end %>
+	</small>
+
+<% end %>
+</br>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_192324) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_205306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -302,6 +302,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_192324) do
     t.integer "ownr_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ld_tipo_formato_id"
+    t.index ["ld_tipo_formato_id"], name: "index_ld_formatos_on_ld_tipo_formato_id"
     t.index ["ownr_class"], name: "index_ld_formatos_on_ownr_class"
     t.index ["ownr_id"], name: "index_ld_formatos_on_ownr_id"
   end
@@ -313,8 +315,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_192324) do
     t.integer "ownr_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ld_tipo_parrafo_id"
+    t.index ["ld_tipo_parrafo_id"], name: "index_ld_parrafos_on_ld_tipo_parrafo_id"
     t.index ["ownr_class"], name: "index_ld_parrafos_on_ownr_class"
     t.index ["ownr_id"], name: "index_ld_parrafos_on_ownr_id"
+  end
+
+  create_table "ld_tipo_formatos", force: :cascade do |t|
+    t.string "ld_tipo_formato"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ld_tipo_formato"], name: "index_ld_tipo_formatos_on_ld_tipo_formato"
+  end
+
+  create_table "ld_tipo_parrafos", force: :cascade do |t|
+    t.string "ld_tipo_parrafo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ld_tipo_parrafo"], name: "index_ld_tipo_parrafos_on_ld_tipo_parrafo"
   end
 
   create_table "sb_elementos", force: :cascade do |t|

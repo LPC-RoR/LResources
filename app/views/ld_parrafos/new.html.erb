@@ -1,9 +1,3 @@
-<h1>New ld parrafo</h1>
-
-<%= render "form", ld_parrafo: @ld_parrafo %>
-
-<br>
-
-<div>
-  <%= link_to "Back to ld parrafos", ld_parrafos_path %>
-</div>
+<%= render "0p/form/remote_modal", title: "Nuevo" do %>
+  <%= render partial: '0p/form/form' %>
+<% end %>

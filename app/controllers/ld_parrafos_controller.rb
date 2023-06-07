@@ -3,7 +3,7 @@ class LdParrafosController < ApplicationController
 
   # GET /ld_parrafos or /ld_parrafos.json
   def index
-    @ld_parrafos = LdParrafo.all
+    @coleccion = LdParrafo.all
   end
 
   # GET /ld_parrafos/1 or /ld_parrafos/1.json
@@ -12,7 +12,7 @@ class LdParrafosController < ApplicationController
 
   # GET /ld_parrafos/new
   def new
-    @ld_parrafo = LdParrafo.new
+    @objeto = LdParrafo.new(ld_tipo_parrafo_id: params[:objeto_id])
   end
 
   # GET /ld_parrafos/1/edit
@@ -21,15 +21,16 @@ class LdParrafosController < ApplicationController
 
   # POST /ld_parrafos or /ld_parrafos.json
   def create
-    @ld_parrafo = LdParrafo.new(ld_parrafo_params)
+    @objeto = LdParrafo.new(ld_parrafo_params)
 
     respond_to do |format|
-      if @ld_parrafo.save
-        format.html { redirect_to ld_parrafo_url(@ld_parrafo), notice: "Ld parrafo was successfully created." }
-        format.json { render :show, status: :created, location: @ld_parrafo }
+      if @objeto.save
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: "Párrafo fue exitóasamente creado." }
+        format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ld_parrafo.errors, status: :unprocessable_entity }
+        format.json { render json: @objeto.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,22 +38,24 @@ class LdParrafosController < ApplicationController
   # PATCH/PUT /ld_parrafos/1 or /ld_parrafos/1.json
   def update
     respond_to do |format|
-      if @ld_parrafo.update(ld_parrafo_params)
-        format.html { redirect_to ld_parrafo_url(@ld_parrafo), notice: "Ld parrafo was successfully updated." }
-        format.json { render :show, status: :ok, location: @ld_parrafo }
+      if @objeto.update(ld_parrafo_params)
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: "Párrafo fue exitósamente actualizado." }
+        format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ld_parrafo.errors, status: :unprocessable_entity }
+        format.json { render json: @objeto.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /ld_parrafos/1 or /ld_parrafos/1.json
   def destroy
-    @ld_parrafo.destroy
+    set_redireccion
+    @objeto.destroy
 
     respond_to do |format|
-      format.html { redirect_to ld_parrafos_url, notice: "Ld parrafo was successfully destroyed." }
+      format.html { redirect_to @redireccion, notice: "Párrafo fue exitósamente eliminado." }
       format.json { head :no_content }
     end
   end
@@ -60,11 +63,15 @@ class LdParrafosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ld_parrafo
-      @ld_parrafo = LdParrafo.find(params[:id])
+      @objeto = LdParrafo.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = ld_formatos_path
     end
 
     # Only allow a list of trusted parameters through.
     def ld_parrafo_params
-      params.require(:ld_parrafo).permit(:ld_parrafo, :texto, :ownr_class, :ownr_id)
+      params.require(:ld_parrafo).permit(:ld_parrafo, :texto, :ownr_class, :ownr_id, :ld_tipo_parrafo_id)
     end
 end

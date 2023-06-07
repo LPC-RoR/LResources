@@ -3,7 +3,8 @@ class LdFormatosController < ApplicationController
 
   # GET /ld_formatos or /ld_formatos.json
   def index
-    @ld_formatos = LdFormato.all
+    init_tabla('ld_tipo_formatos', LdTipoFormato.all.order(:ld_tipo_formato), false)
+    add_tabla('ld_tipo_parrafos', LdTipoParrafo.all.order(:ld_tipo_parrafo), false)
   end
 
   # GET /ld_formatos/1 or /ld_formatos/1.json
@@ -12,7 +13,7 @@ class LdFormatosController < ApplicationController
 
   # GET /ld_formatos/new
   def new
-    @ld_formato = LdFormato.new
+    @objeto = LdFormato.new(ld_tipo_formato_id: params[:objeto_id])
   end
 
   # GET /ld_formatos/1/edit
@@ -21,15 +22,16 @@ class LdFormatosController < ApplicationController
 
   # POST /ld_formatos or /ld_formatos.json
   def create
-    @ld_formato = LdFormato.new(ld_formato_params)
+    @objeto = LdFormato.new(ld_formato_params)
 
     respond_to do |format|
-      if @ld_formato.save
-        format.html { redirect_to ld_formato_url(@ld_formato), notice: "Ld formato was successfully created." }
-        format.json { render :show, status: :created, location: @ld_formato }
+      if @objeto.save
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: "Formato fue exitóasamente creado." }
+        format.json { render :show, status: :created, location: @objeto }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ld_formato.errors, status: :unprocessable_entity }
+        format.json { render json: @objeto.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,22 +39,24 @@ class LdFormatosController < ApplicationController
   # PATCH/PUT /ld_formatos/1 or /ld_formatos/1.json
   def update
     respond_to do |format|
-      if @ld_formato.update(ld_formato_params)
-        format.html { redirect_to ld_formato_url(@ld_formato), notice: "Ld formato was successfully updated." }
-        format.json { render :show, status: :ok, location: @ld_formato }
+      if @objeto.update(ld_formato_params)
+        set_redireccion
+        format.html { redirect_to @redireccion, notice: "Formato fue exitóasamente actualizado." }
+        format.json { render :show, status: :ok, location: @objeto }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ld_formato.errors, status: :unprocessable_entity }
+        format.json { render json: @objeto.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /ld_formatos/1 or /ld_formatos/1.json
   def destroy
-    @ld_formato.destroy
+    set_redireccion
+    @objeto.destroy
 
     respond_to do |format|
-      format.html { redirect_to ld_formatos_url, notice: "Ld formato was successfully destroyed." }
+      format.html { redirect_to @redireccion, notice: "Formato fue exitóasamente eliminado." }
       format.json { head :no_content }
     end
   end
@@ -60,11 +64,15 @@ class LdFormatosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ld_formato
-      @ld_formato = LdFormato.find(params[:id])
+      @objeto = LdFormato.find(params[:id])
+    end
+
+    def set_redireccion
+      @redireccion = ld_formatos_path
     end
 
     # Only allow a list of trusted parameters through.
     def ld_formato_params
-      params.require(:ld_formato).permit(:ld_formato, :ownr_class, :ownr_id)
+      params.require(:ld_formato).permit(:ld_formato, :ownr_class, :ownr_id, :ld_tipo_formato_id)
     end
 end

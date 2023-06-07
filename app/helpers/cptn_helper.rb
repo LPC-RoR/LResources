@@ -49,7 +49,9 @@ module CptnHelper
 			'app_escaneos' => 'images',
 			'cargos' => 'person-bounding-box',
 			'empleados' => 'person-vcard',
-			'control_documentos' => 'file-earmark-check'
+			'control_documentos' => 'file-earmark-check',
+			'ld_formatos' => 'body-text',
+			'ld_parrafos' => 'blockquote-left'
 		}
 	end
 

@@ -12,7 +12,11 @@ module CptnCristianoHelper
 			'TarUfSistema' => 'Uf del sistema',
 			'SbLista' => 'Menú lateral',
 			'SbElemento' => 'Elemento del menú lateral',
-			'TarHora' => 'Tarifa en Horas'
+			'TarHora' => 'Tarifa en Horas',
+			'LdTipoFormato' => 'Tipo Formato',
+			'LdTipoParrafo' => 'Tipo Párrafo',
+			'LdParrafo' => 'Párrafo',
+			'LdFormato' => 'Formato'
 		}
 	end
 

@@ -2,8 +2,8 @@ module CptnMenuAppHelper
 
 	def menu_base
 	    [
-	        ['',           '/app_recursos/administracion', 'admin', 'person-rolodex'],
-	        ["Procesos",   "/app_recursos/procesos",       'dog',   'radioactive']
+	        ['',           '/app_recursos/administracion', 'admin', 'person-rolodex', 'Administración'],
+	        ["Procesos",   "/app_recursos/procesos",       'dog',   'radioactive', 'Procesos']
 	    ]
 	end
 
@@ -11,11 +11,12 @@ module CptnMenuAppHelper
 	    ## Menu principal de la aplicación
 	    # [ 'Item del menú', 'link', 'accesso', 'gly' ]
 	    [
-	        ['',        "/st_bandejas",         'nomina', 'inboxes'],
-	        ['',        "/app_repositorios",    'nomina', 'archive'],
-	        ['',        "/tablas",              'admin',  'table'],
-	        ['',        "/empresas/activa",     "admin",  'diagram-3'],
-	        ['',        "/app_empresas",        'admin',  'buildings'],
+	        ['',        "/st_bandejas",         'nomina', 'inboxes', 'Gestión por estados'],
+	        ['',        "/app_repositorios",    'nomina', 'archive', 'Repositorios de documentos'],
+	        ['',        "/ld_formatos",        "admin",   'book', 'Formatos de documentos'],
+	        ['',        "/tablas",              'admin',  'table', 'Tablas'],
+	        ['',        "/empresas/activa",     "admin",  'diagram-3', 'Empresa activa'],
+	        ['',        "/app_empresas",        'admin',  'buildings', 'Empresas'],
 	    ]
 
 	end

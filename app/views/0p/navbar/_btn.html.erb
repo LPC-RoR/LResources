@@ -2,14 +2,14 @@
 <!-- las lineas comentadas borran el botón if_current -->
 <li class="nav-item <%= 'active' if active %>">
 	<% if delete %>
-		<%= link_to link, data: { "turbo-method": :delete }, class: "nav-link" do %>
+		<%= link_to link, data: { "turbo-method": :delete }, class: "nav-link", title: title do %>
 			<% unless gly.blank? %>
 				<i class=<%="bi-#{gly}"%>></i>
 			<% end %>
 		    <%= nombre unless nombre.blank? %>
 		<% end %>
 	<% else %>
-		<%= link_to link, class: "nav-link" do %>
+		<%= link_to link, class: "nav-link", title: title do %>
 			<% unless gly.blank? %>
 				<i class=<%="bi-#{gly}"%>></i>
 			<% end %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :ld_tipo_parrafos
+  resources :ld_tipo_formatos
   resources :ld_parrafos
   resources :ld_formatos
   resources :control_documentos
